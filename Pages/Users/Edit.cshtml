@@ -1,0 +1,65 @@
+﻿@page
+@model CronosegAccess.Pages.Users.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>User</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="User.idUser" />
+            <div class="form-group">
+                <label asp-for="User.Uid" class="control-label"></label>
+                <input asp-for="User.Uid" class="form-control" />
+                <span asp-validation-for="User.Uid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.FirstName" class="control-label"></label>
+                <input asp-for="User.FirstName" class="form-control" />
+                <span asp-validation-for="User.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.LastName" class="control-label"></label>
+                <input asp-for="User.LastName" class="form-control" />
+                <span asp-validation-for="User.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.dateIni" class="control-label"></label>
+                <input asp-for="User.dateIni" class="form-control" />
+                <span asp-validation-for="User.dateIni" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.dateEnd" class="control-label"></label>
+                <input asp-for="User.dateEnd" class="form-control" />
+                <span asp-validation-for="User.dateEnd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.Zone" class="control-label"></label>
+                <input asp-for="User.Zone" class="form-control" />
+                <span asp-validation-for="User.Zone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.Schedule" class="control-label"></label>
+                <input asp-for="User.Schedule" class="form-control" />
+                <span asp-validation-for="User.Schedule" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

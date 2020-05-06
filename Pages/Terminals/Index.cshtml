@@ -1,0 +1,48 @@
+﻿@page
+@model CronosegAccess.Pages.Terminals.IndexModel
+
+@{
+    ViewData["Title"] = "Terminales";
+}
+
+<h1>Terminales</h1>
+
+<p>
+    <a asp-page="Create">Nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Terminal[0].idTerminal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Terminal[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Terminal[0].Zone)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Terminal) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idTerminal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Zone.Name)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.idTerminal">Editar</a> |
+                <a asp-page="./Details" asp-route-id="@item.idTerminal">Detalles</a> |
+                <a asp-page="./Delete" asp-route-id="@item.idTerminal">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,84 @@
+﻿@page "{searchString?}"
+@model CronosegAccess.Pages.Users.IndexModel
+
+@{
+    ViewData["Title"] = "Usuarios";
+}
+
+<h1>Usuarios</h1>
+
+<p>
+    <a asp-page="Create">Nuevo</a>
+</p>
+
+<form>
+    <p>
+        Zona de Acceso: <select asp-for="UserZone" asp-items="Model.Zone">
+            <option value="">Todos</option>
+        </select>
+        Palabra clave: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filtrar" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].Uid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].dateIni)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].dateEnd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].Zone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].Schedule)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.User)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Uid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dateIni)
+            </td>
+            <td>    
+                @Html.DisplayFor(modelItem => item.dateEnd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Zone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Schedule)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.idUser">Editar</a> |
+                <a asp-page="./Details" asp-route-id="@item.idUser">Detalles</a> |
+                <a asp-page="./Delete" asp-route-id="@item.idUser">Eliminar</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
