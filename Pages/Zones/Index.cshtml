@@ -14,9 +14,6 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Zone[0].idZone)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Zone[0].Name)
             </th>
             <th></th>
@@ -26,15 +23,12 @@
 @foreach (var item in Model.Zone) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.idZone)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.idZone">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.idZone">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.idZone">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.IdZone">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.IdZone">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.IdZone">Delete</a>
             </td>
         </tr>
 }

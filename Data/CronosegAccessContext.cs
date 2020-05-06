@@ -1,29 +1,21 @@
-﻿using CronosegAccess.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using CronosegAccess.Models;
 
 namespace CronosegAccess.Data
 {
     public class CronosegAccessContext : DbContext
     {
-        public CronosegAccessContext(DbContextOptions<CronosegAccessContext> options)
+        public CronosegAccessContext (DbContextOptions<CronosegAccessContext> options)
             : base(options)
         {
         }
 
-        public DbSet<User> User { get; set; }
+        public DbSet<CronosegAccess.Models.Terminal> Terminal { get; set; }
 
-        public DbSet<Zone> Zone { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<User>().ToTable("User");
-            modelBuilder.Entity<Zone>().ToTable("Zone");
-            modelBuilder.Entity<Terminal>().ToTable("Terminal");
-            modelBuilder.Entity<UserZone>().ToTable("UserZone");
-            modelBuilder.Entity<UserZone>()
-                .HasKey(c => new { c.idUser, c.IdZone });
-        }
-
-        public DbSet<Terminal> Terminal { get; set; }
+        public DbSet<CronosegAccess.Models.Zone> Zone { get; set; }
     }
 }

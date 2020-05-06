@@ -29,7 +29,7 @@ namespace CronosegAccess.Pages.Terminals
                 return NotFound();
             }
 
-            Terminal = await _context.Terminal.FirstOrDefaultAsync(m => m.idTerminal == id);
+            Terminal = await _context.Terminal.FirstOrDefaultAsync(m => m.IdTerminal == id);
 
             if (Terminal == null)
             {

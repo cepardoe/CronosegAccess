@@ -30,7 +30,7 @@ namespace CronosegAccess.Pages.Zones
                 return NotFound();
             }
 
-            Zone = await _context.Zone.FirstOrDefaultAsync(m => m.idZone == id);
+            Zone = await _context.Zone.FirstOrDefaultAsync(m => m.IdZone == id);
 
             if (Zone == null)
             {
@@ -56,7 +56,7 @@ namespace CronosegAccess.Pages.Zones
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ZoneExists(Zone.idZone))
+                if (!ZoneExists(Zone.IdZone))
                 {
                     return NotFound();
                 }
@@ -71,7 +71,7 @@ namespace CronosegAccess.Pages.Zones
 
         private bool ZoneExists(int id)
         {
-            return _context.Zone.Any(e => e.idZone == id);
+            return _context.Zone.Any(e => e.IdZone == id);
         }
     }
 }

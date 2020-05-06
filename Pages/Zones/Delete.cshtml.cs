@@ -29,7 +29,7 @@ namespace CronosegAccess.Pages.Zones
                 return NotFound();
             }
 
-            Zone = await _context.Zone.FirstOrDefaultAsync(m => m.idZone == id);
+            Zone = await _context.Zone.FirstOrDefaultAsync(m => m.IdZone == id);
 
             if (Zone == null)
             {

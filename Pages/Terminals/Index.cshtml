@@ -2,19 +2,19 @@
 @model CronosegAccess.Pages.Terminals.IndexModel
 
 @{
-    ViewData["Title"] = "Terminales";
+    ViewData["Title"] = "Index";
 }
 
-<h1>Terminales</h1>
+<h1>Index</h1>
 
 <p>
-    <a asp-page="Create">Nuevo</a>
+    <a asp-page="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Terminal[0].idTerminal)
+                @Html.DisplayNameFor(model => model.Terminal[0].IdTerminal)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Terminal[0].Name)
@@ -29,7 +29,7 @@
 @foreach (var item in Model.Terminal) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.idTerminal)
+                @Html.DisplayFor(modelItem => item.IdTerminal)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -38,9 +38,9 @@
                 @Html.DisplayFor(modelItem => item.Zone.Name)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.idTerminal">Editar</a> |
-                <a asp-page="./Details" asp-route-id="@item.idTerminal">Detalles</a> |
-                <a asp-page="./Delete" asp-route-id="@item.idTerminal">Eliminar</a>
+                <a asp-page="./Edit" asp-route-id="@item.IdTerminal">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.IdTerminal">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.IdTerminal">Delete</a>
             </td>
         </tr>
 }

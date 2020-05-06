@@ -30,7 +30,7 @@ namespace CronosegAccess.Pages.Terminals
                 return NotFound();
             }
 
-            Terminal = await _context.Terminal.FirstOrDefaultAsync(m => m.idTerminal == id);
+            Terminal = await _context.Terminal.FirstOrDefaultAsync(m => m.IdTerminal == id);
 
             if (Terminal == null)
             {
@@ -56,7 +56,7 @@ namespace CronosegAccess.Pages.Terminals
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TerminalExists(Terminal.idTerminal))
+                if (!TerminalExists(Terminal.IdTerminal))
                 {
                     return NotFound();
                 }
@@ -71,7 +71,7 @@ namespace CronosegAccess.Pages.Terminals
 
         private bool TerminalExists(int id)
         {
-            return _context.Terminal.Any(e => e.idTerminal == id);
+            return _context.Terminal.Any(e => e.IdTerminal == id);
         }
     }
 }
