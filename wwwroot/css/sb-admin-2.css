@@ -10209,6 +10209,7 @@ a:focus {
   text-transform: uppercase;
   letter-spacing: 0.05rem;
   z-index: 1;
+  background-color: white;
 }
 
 .sidebar .sidebar-brand .sidebar-brand-icon i {
