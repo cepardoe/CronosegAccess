@@ -10,7 +10,7 @@ using CronosegAccess.Models;
 
 namespace CronosegAccess.Pages.Terminals
 {
-    public class CreateModel : PageModel
+    public class CreateModel : ZoneNamePageModel
     {
         private readonly CronosegAccess.Data.CronosegAccessContext _context;
 
@@ -21,25 +21,33 @@ namespace CronosegAccess.Pages.Terminals
 
         public IActionResult OnGet()
         {
+            PopulateZonesDropDownList(_context);
             return Page();
         }
 
         [BindProperty]
-        public Terminal Terminal { get; set; }
+        public accTerminal Terminal { get; set; }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+
+            var emptyTerminal = new accTerminal();
+
+            if (await TryUpdateModelAsync<accTerminal>(
+                 emptyTerminal,
+                 "terminal",   // Prefix for form value.
+                 s => s.IdTerminal, s => s.idZone, s => s.Name))
             {
-                return Page();
+                _context.accTerminal.Add(emptyTerminal);
+                await _context.SaveChangesAsync();
+                return RedirectToPage("./Index");
             }
 
-            _context.Terminal.Add(Terminal);
-            await _context.SaveChangesAsync();
-
-            return RedirectToPage("./Index");
+            // Select DepartmentID if TryUpdateModelAsync fails.
+            PopulateZonesDropDownList(_context, emptyTerminal.idZone);
+            return Page();
         }
     }
 }

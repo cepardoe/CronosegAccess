@@ -25,7 +25,7 @@ namespace CronosegAccess.Pages.Zones
         }
 
         [BindProperty]
-        public Zone Zone { get; set; }
+        public accZone Zone { get; set; }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://aka.ms/RazorPagesCRUD.
@@ -36,7 +36,7 @@ namespace CronosegAccess.Pages.Zones
                 return Page();
             }
 
-            _context.Zone.Add(Zone);
+            _context.accZone.Add(Zone);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

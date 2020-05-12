@@ -19,7 +19,7 @@ namespace CronosegAccess.Pages.Terminals
             _context = context;
         }
 
-        public Terminal Terminal { get; set; }
+        public accTerminal Terminal { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,7 +28,9 @@ namespace CronosegAccess.Pages.Terminals
                 return NotFound();
             }
 
-            Terminal = await _context.Terminal.FirstOrDefaultAsync(m => m.IdTerminal == id);
+            Terminal = await _context.accTerminal
+                .AsNoTracking()
+                .FirstOrDefaultAsync(m => m.IdTerminal == id);
 
             if (Terminal == null)
             {

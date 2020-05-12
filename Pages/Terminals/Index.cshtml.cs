@@ -19,15 +19,14 @@ namespace CronosegAccess.Pages.Terminals
             _context = context;
         }
 
-        public IList<Terminal> Terminal { get; set; }
+        public IList<accTerminal> Terminal { get;set; }
 
         public async Task OnGetAsync()
         {
-            Terminal = await _context.Terminal
+            Terminal = await _context.accTerminal
     .Include(c => c.Zone)
     .AsNoTracking()
     .ToListAsync();
-            //Terminal = await _context.Terminal.ToListAsync();
         }
     }
 }

@@ -12,14 +12,14 @@ namespace CronosegAccess.Pages.Zones
 {
     public class DetailsModel : PageModel
     {
-        private readonly CronosegAccess.Data.CronosegAccessContext _context;
+        private readonly CronosegAccessContext _context;
 
-        public DetailsModel(CronosegAccess.Data.CronosegAccessContext context)
+        public DetailsModel(CronosegAccessContext context)
         {
             _context = context;
         }
 
-        public Zone Zone { get; set; }
+        public accZone accZone { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,9 +28,9 @@ namespace CronosegAccess.Pages.Zones
                 return NotFound();
             }
 
-            Zone = await _context.Zone.FirstOrDefaultAsync(m => m.IdZone == id);
+            accZone = await _context.accZone.FirstOrDefaultAsync(m => m.IdZone == id);
 
-            if (Zone == null)
+            if (accZone == null)
             {
                 return NotFound();
             }

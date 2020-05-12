@@ -1,14 +1,14 @@
-﻿@page
+﻿@page "{id:int?}"
 @model CronosegAccess.Pages.Terminals.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Terminales";
 }
 
-<h1>Index</h1>
+<h1>Terminales</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Nuevo</a>
 </p>
 <table class="table">
     <thead>
@@ -38,9 +38,9 @@
                 @Html.DisplayFor(modelItem => item.Zone.Name)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.IdTerminal">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.IdTerminal">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.IdTerminal">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.IdTerminal">Editar</a> |
+                <a asp-page="./Details" asp-route-id="@item.IdTerminal">Detalles</a> |
+                <a asp-page="./Delete" asp-route-id="@item.IdTerminal">Eliminar</a>
             </td>
         </tr>
 }

@@ -1,0 +1,104 @@
+﻿@page "{id:int?}"
+@model CronosegAccess.Pages.Users.IndexModel
+
+@{
+    ViewData["Title"] = "Usuarios";
+}
+
+<h1>Usuarios</h1>
+
+<p>
+    <a asp-page="Create">Nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Identificación</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Fecha Inicial</th>
+            <th>Fecha FInal</th>
+            <th>Zonas</th>
+            <th></th>
+
+            @*<th>
+                    @Html.DisplayNameFor(model => model.User[0].Uid)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.User[0].FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.User[0].LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.User[0].dateIni)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.User[0].dateEnd)
+                </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.UserData.Users)
+        {
+            string selectedRow = "";
+            if (item.idUser == Model.UserID)
+            {
+                selectedRow = "table-success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Uid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dateIni)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dateEnd)
+                </td>
+                <td>
+                    @{
+                            foreach (var zone in item.UserZones)
+                        {
+                            @zone.zone.Name <br />
+                        }
+                    }
+                </td>
+                <td>
+                    <a asp-page="./Index" asp-route-id="@item.idUser">Select</a> |
+                    <a asp-page="./Edit" asp-route-id="@item.idUser">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.idUser">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.idUser">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (Model.UserData.Zones != null)
+{
+    <h3>Zonas a las que pertenece el Usuario</h3>
+    <table class="table">
+        <tr>
+            <th>Nombre</th>
+        </tr>
+
+        @foreach (var item in Model.UserData.Zones)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+            </tr>
+        }
+
+
+    </table>
+}

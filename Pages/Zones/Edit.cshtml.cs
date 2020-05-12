@@ -21,7 +21,7 @@ namespace CronosegAccess.Pages.Zones
         }
 
         [BindProperty]
-        public Zone Zone { get; set; }
+        public accZone Zone { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,7 +30,7 @@ namespace CronosegAccess.Pages.Zones
                 return NotFound();
             }
 
-            Zone = await _context.Zone.FirstOrDefaultAsync(m => m.IdZone == id);
+            Zone = await _context.accZone.FirstOrDefaultAsync(m => m.IdZone == id);
 
             if (Zone == null)
             {
@@ -71,7 +71,7 @@ namespace CronosegAccess.Pages.Zones
 
         private bool ZoneExists(int id)
         {
-            return _context.Zone.Any(e => e.IdZone == id);
+            return _context.accZone.Any(e => e.IdZone == id);
         }
     }
 }

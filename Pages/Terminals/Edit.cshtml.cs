@@ -11,7 +11,7 @@ using CronosegAccess.Models;
 
 namespace CronosegAccess.Pages.Terminals
 {
-    public class EditModel : PageModel
+    public class EditModel : ZoneNamePageModel
     {
         private readonly CronosegAccess.Data.CronosegAccessContext _context;
 
@@ -21,7 +21,7 @@ namespace CronosegAccess.Pages.Terminals
         }
 
         [BindProperty]
-        public Terminal Terminal { get; set; }
+        public accTerminal Terminal { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,48 +30,83 @@ namespace CronosegAccess.Pages.Terminals
                 return NotFound();
             }
 
-            Terminal = await _context.Terminal.FirstOrDefaultAsync(m => m.IdTerminal == id);
+            Terminal = await _context.accTerminal
+                .Include(c=>c.Zone)
+                .FirstOrDefaultAsync(m => m.IdTerminal == id);
 
             if (Terminal == null)
             {
                 return NotFound();
             }
+
+            PopulateZonesDropDownList(_context, Terminal.idZone);
             return Page();
         }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            var TerminaltoUpdate = await _context.accTerminal.FindAsync(id);
 
-            _context.Attach(Terminal).State = EntityState.Modified;
-
-            try
+            if (await TryUpdateModelAsync<accTerminal>(
+                 TerminaltoUpdate,
+                 "terminal",   // Prefix for form value.
+                 s => s.IdTerminal, s => s.idZone, s => s.Name))
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TerminalExists(Terminal.IdTerminal))
+                _context.accTerminal.Update(TerminaltoUpdate);
+                try
                 {
-                    return NotFound();
+                    await _context.SaveChangesAsync();
                 }
-                else
+                catch (DbUpdateConcurrencyException)
                 {
-                    throw;
+                    if (!TerminalExists(Terminal.IdTerminal))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
+                return RedirectToPage("./Index");
             }
 
-            return RedirectToPage("./Index");
+            // Select DepartmentID if TryUpdateModelAsync fails.
+            PopulateZonesDropDownList(_context, TerminaltoUpdate.idZone);
+            return Page();
         }
+
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return Page();
+        //    }
+
+        //    _context.Attach(Terminal).State = EntityState.Modified;
+
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!TerminalExists(Terminal.IdTerminal))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
+
+        //    return RedirectToPage("./Index");
+        //}
 
         private bool TerminalExists(int id)
         {
-            return _context.Terminal.Any(e => e.IdTerminal == id);
+            return _context.accTerminal.Any(e => e.IdTerminal == id);
         }
     }
 }

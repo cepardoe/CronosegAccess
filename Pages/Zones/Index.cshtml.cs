@@ -19,11 +19,11 @@ namespace CronosegAccess.Pages.Zones
             _context = context;
         }
 
-        public IList<Zone> Zone { get;set; }
+        public IList<accZone> Zone { get;set; }
 
         public async Task OnGetAsync()
         {
-            Zone = await _context.Zone.ToListAsync();
+            Zone = await _context.accZone.ToListAsync();
         }
     }
 }
