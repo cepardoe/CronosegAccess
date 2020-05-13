@@ -1,0 +1,36 @@
+@page "{id:int?}"
+@{
+    ViewData["Title"] = "Ubicación de la cita";
+}
+<div class="col-lg-5 bg-white shadow-sm p-4">
+  <h4 class="text-primary">Ubicación de la cita</h4>
+  <hr>
+  <form id="form">
+    <div class="form-group">
+      <label for="ubicacion">Ingrese la ubicación de la cita</label>
+      <div class="input-group">
+        <input type="text" id="ubicacion" class="form-control" required>
+        <div class="input-group-append">
+          <button class="btn btn-success">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Tipo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
