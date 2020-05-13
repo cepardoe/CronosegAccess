@@ -1,0 +1,27 @@
+@page "{id:int?}"
+@{
+    ViewData["Title"] = "Ubicación de la cita";
+}
+<div class="col-lg-4 bg-white shadow-sm p-4">
+  <h4 class="text-primary">Requisitos para la cita</h4>
+  <hr>
+  <form id="form">
+    <div class="form-group">
+      <label for="nombre">Ingrese el requisito</label>
+      <input type="text" id="nombre" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+      <div class="form-check form-check-inline">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
+        <label class="form-check-label" for="exampleCheck1">Necesario</label> 
+      </div>
+      <div class="form-check form-check-inline">
+        <input type="checkbox" class="form-check-input" id="exampleCheck2" required>
+        <label class="form-check-label" for="exampleCheck2">Online</label>
+      </div>
+    </div>
+    
+    <button class="btn btn-block btn-success">Guardar Datos</button>
+  </form>
+</div>
