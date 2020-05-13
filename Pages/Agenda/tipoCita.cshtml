@@ -1,0 +1,36 @@
+@page "{id:int?}"
+@{
+    ViewData["Title"] = "Tipos de cita";
+}
+ <div class="col-lg-5 col-md-6 bg-white shadow-sm p-4">
+  <h4 class="text-primary">Tipos de Cita</h4>
+  <hr>
+  <form id="form">
+    <div class="form-group">
+      <label for="tipo">Ingrese el tipo de cita</label>
+      <div class="input-group">
+        <input type="text" id="tipo" class="form-control" required>
+        <div class="input-group-append">
+          <button class="btn btn-success">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Tipo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

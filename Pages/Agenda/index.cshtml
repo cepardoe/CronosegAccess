@@ -2,76 +2,75 @@
 @{
     ViewData["Title"] = "Agendamiento";
 }
-<div class="col-lg-6 bg-light border rounded bg-white p-4">
-        <h4 class="text-center text-info">Agendamiento de Citas</h4>
-        <hr>
-        
-        <form id="form">
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="form-group">
-                <label for="fechaI">Fecha inicial de la cita</label>
-                <input type="date" id="fechaI" class="form-control" name="FechaInicial" required>
-              </div>
-            </div>
-
-            <div class="col-sm-6">
-              <div class="form-group">
-                <label for="horaI">Tiempo inicial de la cita</label>
-                <input type="time" id="horaI" class="form-control" name="horaInicial" aria-describedby="help1" required>
-                <small id="help1" class="form-text text-muted">Hora y minutos de la cita.</small>
-              </div>
-            </div>
-
-            <div class="col-sm-6">
-              <div class="form-group">
-                <label for="fechaF">Fecha final de la cita</label>
-                <input type="date" id="fechaF" class="form-control" name="FechaFinal" required>
-              </div>
-            </div>
-
-            <div class="col-sm-6">
-              <div class="form-group">
-                <label for="horaF">Tiempo final de la cita</label>
-                <input type="time" id="horaF" class="form-control" name="horaFinal" aria-describedby="help2" required>
-                <small id="help2" class="form-text text-muted">Hora y minutos de la cita.</small>
-              </div>
-            </div>
-
-            <div class="col-sm-6">
-              <div class="form-group">
-                <label for="persona">Número de personas</label>
-                <input type="number" id="persona" class="form-control" name="NumeroPersonas" aria-describedby="help3"
-                  required>
-                <small id="help3" class="form-text text-muted">Número de personas que ingresan.</small>
-              </div>
-            </div>
-
-            <div class="col-sm-6">
-              <div class="form-group">
-                <label for="observacion">Observaciones</label>
-                <textarea id="observacion" class="form-control" name="Observaciones" rows="2"></textarea>
-              </div>
-            </div>
-
-            <div class="col-sm-6">
-              <div class="form-group">
-                <label for="tipo">Tipo de cita</label>
-                <select id="tipo" class="form-control" name="idTipoVisita" required>
-                  <option></option>
-                </select>
-              </div>
-            </div>
-
-            <div class="col-sm-6">
-              <div class="form-group">
-                <label for="lugar">Ubicación de la cita</label>
-                <select id="lugar" class="form-control" name="idUbicacion" required>
-                  <option></option>
-                </select>
-              </div>
-            </div>
-          </div>
-            <button class="btn btn-success btn-block" type="submit">Guardar Cita</button>
-        </form>
+<div class="col-lg-6 bg-white shadow-sm p-4">
+  <h4 class="text-primary">Agendamiento de Citas</h4>
+  <hr>
+  <form id="form">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="fechaI">Fecha inicial de la cita</label>
+          <input type="date" id="fechaI" class="form-control" name="FechaInicial" required>
+        </div>
       </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="horaI">Tiempo inicial de la cita</label>
+          <input type="time" id="horaI" class="form-control" name="horaInicial" aria-describedby="help1" required>
+          <small id="help1" class="form-text text-muted">Hora y minutos de la cita.</small>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="fechaF">Fecha final de la cita</label>
+          <input type="date" id="fechaF" class="form-control" name="FechaFinal" required>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="horaF">Tiempo final de la cita</label>
+          <input type="time" id="horaF" class="form-control" name="horaFinal" aria-describedby="help2" required>
+          <small id="help2" class="form-text text-muted">Hora y minutos de la cita.</small>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="persona">Número de personas</label>
+          <input type="number" id="persona" class="form-control" name="NumeroPersonas" aria-describedby="help3"
+            required>
+          <small id="help3" class="form-text text-muted">Número de personas que ingresan.</small>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="observacion">Observaciones</label>
+          <textarea id="observacion" class="form-control" name="Observaciones" rows="2"></textarea>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="tipo">Tipo de cita</label>
+          <select id="tipo" class="form-control" name="idTipoVisita" required>
+            <option></option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="lugar">Ubicación de la cita</label>
+          <select id="lugar" class="form-control" name="idUbicacion" required>
+            <option></option>
+          </select>
+        </div>
+      </div>
+    </div>
+      <button class="btn btn-success btn-block" type="submit">Guardar Cita</button>
+  </form>
+</div>
