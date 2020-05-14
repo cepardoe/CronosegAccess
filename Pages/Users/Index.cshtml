@@ -4,107 +4,129 @@
 @{
     ViewData["Title"] = "Usuarios";
 }
+<div class="container-fluid">
+    <h1 class="h3 mb-2 text-gray-800">Usuarios</h1>
 
-<h1>Usuarios</h1>
 
-<p>
-    <a asp-page="Create">Nuevo</a>
-</p>
-<form>
-    <p>
-        Palabra Clave: <input type="text" asp-for="SearchString" />
-        <input type="submit" value="Filtrar" />
-    </p>
-</form>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Identificación</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Fecha Inicial</th>
-            <th>Fecha FInal</th>
-            <th>Zonas</th>
-            <th></th>
 
-            @*<th>
-                    @Html.DisplayNameFor(model => model.User[0].Uid)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.User[0].FirstName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.User[0].LastName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.User[0].dateIni)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.User[0].dateEnd)
-                </th>*@
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.UserData.Users)
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <a asp-page="Create" class="btn btn-success btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-plus"></i>
+                        </span>
+                        <span class="text">Nuevo</span>
+                    </a>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <form>
+                        <p>
+                            Palabra Clave: <input type="text" asp-for="SearchString" />
+                            <input type="submit" value="Filtrar" />
+                        </p>
+                    </form>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Identificación</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Fecha Inicial</th>
+                                <th>Fecha FInal</th>
+                                <th>Zonas</th>
+                                <th></th>
+
+                                @*<th>
+                                        @Html.DisplayNameFor(model => model.User[0].Uid)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.User[0].FirstName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.User[0].LastName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.User[0].dateIni)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.User[0].dateEnd)
+                                    </th>*@
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.UserData.Users)
+                            {
+                                string selectedRow = "";
+                                if (item.idUser == Model.UserID)
+                                {
+                                    selectedRow = "table-success";
+                                }
+                                <tr class="@selectedRow">
+                                    <td>
+                                        <a asp-page="./Index" asp-route-id="@item.idUser">@Html.DisplayFor(modelItem => item.Uid)</a>
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FirstName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.LastName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.dateIni)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.dateEnd)
+                                    </td>
+                                    <td>
+                                        @{
+                                            foreach (var zone in item.UserZones)
+                                            {
+                                                @zone.zone.Name <br />
+                                            }
+                                        }
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-info btn-circle btn-sm" asp-page="./Edit" asp-route-id="@item.idUser"><i class="fas fa-edit"></i></a>
+                                        <a class="btn btn-danger btn-circle btn-sm" asp-page="./Delete" asp-route-id="@item.idUser"><i class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        @if (Model.UserData.Zones != null)
         {
-            string selectedRow = "";
-            if (item.idUser == Model.UserID)
-            {
-                selectedRow = "table-success";
-            }
-            <tr class="@selectedRow">
-                <td>
-                    @Html.DisplayFor(modelItem => item.Uid)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.dateIni)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.dateEnd)
-                </td>
-                <td>
-                    @{
-                            foreach (var zone in item.UserZones)
-                        {
-                            @zone.zone.Name <br />
-                        }
-                    }
-                </td>
-                <td>
-                    <a asp-page="./Index" asp-route-id="@item.idUser">Select</a> |
-                    <a asp-page="./Edit" asp-route-id="@item.idUser">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.idUser">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.idUser">Delete</a>
-                </td>
-            </tr>
+            <h3>Zonas a las que pertenece el Usuario</h3>
+            <table class="table">
+                <tr>
+                    <th>Nombre</th>
+                </tr>
+
+                @foreach (var item in Model.UserData.Zones)
+                {
+                    <tr>
+                        <td>
+                            @item.Name
+                        </td>
+                    </tr>
+                }
+
+
+            </table>
         }
-    </tbody>
-</table>
-
-@if (Model.UserData.Zones != null)
-{
-    <h3>Zonas a las que pertenece el Usuario</h3>
-    <table class="table">
-        <tr>
-            <th>Nombre</th>
-        </tr>
-
-        @foreach (var item in Model.UserData.Zones)
-        {
-            <tr>
-                <td>
-                    @item.Name
-                </td>
-            </tr>
-        }
-
-
-    </table>
-}
+    </div>
+    <!-- Page level plugins -->
+    <script src="~/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Page level custom scripts -->
+    <script src="~/js/demo/datatables-demo.js"></script>
