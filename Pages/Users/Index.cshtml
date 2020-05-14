@@ -5,8 +5,6 @@
     ViewData["Title"] = "Usuarios";
 }
 
-    
-
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h5 class="m-0 font-weight-bold text-secondary">Usuarios</h5>
@@ -18,12 +16,6 @@
                 </span>
                 <span class="text">Nuevo</span>
             </a>
-            @*  <form>
-                    <p>
-                        Palabra Clave: <input type="text" asp-for="SearchString" />
-                        <input type="submit" value="Filtrar" />
-                    </p>
-                </form> *@
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTableUsers">
                     <thead>
@@ -93,27 +85,26 @@
                         }
                     </tbody>
                 </table>
+
+                @if (Model.UserData.Zones != null)
+                {
+                    <h5 class="card-header mt-4">Zonas a las que pertenece el Usuario</h5>
+                    <table class="table">
+                        <tr>
+                            <th>Nombre</th>
+                        </tr>
+
+                        @foreach (var item in Model.UserData.Zones)
+                        {
+                            <tr>
+                                <td>
+                                    @item.Name
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                }
             </div>
         </div>
-        @if (Model.UserData.Zones != null)
-        {
-            <h3>Zonas a las que pertenece el Usuario</h3>
-            <table class="table">
-                <tr>
-                    <th>Nombre</th>
-                </tr>
-
-                @foreach (var item in Model.UserData.Zones)
-                {
-                    <tr>
-                        <td>
-                            @item.Name
-                        </td>
-                    </tr>
-                }
-
-
-            </table>
-        }
     </div>
    
