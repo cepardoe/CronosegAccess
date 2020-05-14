@@ -4,102 +4,95 @@
 @{
     ViewData["Title"] = "Usuarios";
 }
-<div class="container-fluid">
-    <h1 class="h3 mb-2 text-gray-800">Usuarios</h1>
 
-
+    
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <a asp-page="Create" class="btn btn-success btn-icon-split">
-                        <span class="icon text-white-50">
-                            <i class="fas fa-plus"></i>
-                        </span>
-                        <span class="text">Nuevo</span>
-                    </a>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <form>
-                        <p>
-                            Palabra Clave: <input type="text" asp-for="SearchString" />
-                            <input type="submit" value="Filtrar" />
-                        </p>
-                    </form>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>Identificación</th>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>Fecha Inicial</th>
-                                <th>Fecha FInal</th>
-                                <th>Zonas</th>
-                                <th></th>
+            <h5 class="m-0 font-weight-bold text-secondary">Usuarios</h5>
+        </div>
+        <div class="card-body">
+             <a asp-page="Create" class="btn btn-success btn-icon-split mb-3">
+                <span class="icon text-white-50">
+                    <i class="fas fa-plus"></i>
+                </span>
+                <span class="text">Nuevo</span>
+            </a>
+            @*  <form>
+                    <p>
+                        Palabra Clave: <input type="text" asp-for="SearchString" />
+                        <input type="submit" value="Filtrar" />
+                    </p>
+                </form> *@
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTableUsers">
+                    <thead>
+                        <tr>
+                            <th>Identificación</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Fecha Inicial</th>
+                            <th>Fecha FInal</th>
+                            <th>Zonas</th>
+                            <th></th>
 
-                                @*<th>
-                                        @Html.DisplayNameFor(model => model.User[0].Uid)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.User[0].FirstName)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.User[0].LastName)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.User[0].dateIni)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.User[0].dateEnd)
-                                    </th>*@
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.UserData.Users)
+                            @*<th>
+                                    @Html.DisplayNameFor(model => model.User[0].Uid)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.User[0].FirstName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.User[0].LastName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.User[0].dateIni)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.User[0].dateEnd)
+                                </th>*@
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.UserData.Users)
+                        {
+                            string selectedRow = "";
+                            if (item.idUser == Model.UserID)
                             {
-                                string selectedRow = "";
-                                if (item.idUser == Model.UserID)
-                                {
-                                    selectedRow = "table-success";
-                                }
-                                <tr class="@selectedRow">
-                                    <td>
-                                        <a asp-page="./Index" asp-route-id="@item.idUser">@Html.DisplayFor(modelItem => item.Uid)</a>
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.FirstName)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.LastName)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.dateIni)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.dateEnd)
-                                    </td>
-                                    <td>
-                                        @{
-                                            foreach (var zone in item.UserZones)
-                                            {
-                                                @zone.zone.Name <br />
-                                            }
-                                        }
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-info btn-circle btn-sm" asp-page="./Edit" asp-route-id="@item.idUser"><i class="fas fa-edit"></i></a>
-                                        <a class="btn btn-danger btn-circle btn-sm" asp-page="./Delete" asp-route-id="@item.idUser"><i class="fas fa-trash"></i></a>
-                                    </td>
-                                </tr>
+                                selectedRow = "table-success";
                             }
-                        </tbody>
-                    </table>
-                </div>
+                            <tr class="@selectedRow">
+                                <td>
+                                    <a asp-page="./Index" asp-route-id="@item.idUser">@Html.DisplayFor(modelItem => item.Uid)</a>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FirstName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LastName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.dateIni)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.dateEnd)
+                                </td>
+                                <td>
+                                    @{
+                                        foreach (var zone in item.UserZones)
+                                        {
+                                            @zone.zone.Name <br />
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    <a class="btn btn-info btn-circle btn-sm" asp-page="./Edit" asp-route-id="@item.idUser"><i class="fas fa-edit"></i></a>
+                                    <a class="btn btn-danger btn-circle btn-sm" asp-page="./Delete" asp-route-id="@item.idUser"><i class="fas fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
         @if (Model.UserData.Zones != null)
@@ -123,10 +116,4 @@
             </table>
         }
     </div>
-    <!-- Page level plugins -->
-    <script src="~/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="~/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-    <!-- Core plugin JavaScript-->
-    <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <!-- Page level custom scripts -->
-    <script src="~/js/demo/datatables-demo.js"></script>
+   
