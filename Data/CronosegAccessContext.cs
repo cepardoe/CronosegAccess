@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using CronosegAccess.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CronosegAccess.Data
 {
@@ -16,10 +17,16 @@ namespace CronosegAccess.Data
         {
         }
 
-        public DbSet<CronosegAccess.Models.accTerminal> accTerminal { get; set; }
+        public DbSet<accTerminal> accTerminal { get; set; }
+        public DbSet<accZone> accZone { get; set; }
+        public DbSet<accUser> accUser { get; set; }
+        public DbSet<accSchedule> accSchedule { get; set; }
 
-        public DbSet<CronosegAccess.Models.accZone> accZone { get; set; }
+        public DbSet<accEnter> accEnter { get; set; }
 
+        public DbSet<accResult> accResult { get; set; }
+
+        public DbSet<accMode> accMode { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,6 +36,25 @@ namespace CronosegAccess.Data
             modelBuilder.Entity<accUser>().ToTable("accUser");
             modelBuilder.Entity<accSchedule>().ToTable("accSchedule");
             modelBuilder.Entity<accUserZone>().ToTable("accUserZone");
+            modelBuilder.Entity<accMode>().ToTable("accMode");
+            modelBuilder.Entity<accResult>().ToTable("accResult");
+            modelBuilder.Entity<accEnter>().ToTable("accEnter");
+
+
+            modelBuilder.Entity<accEnter>()
+                .HasKey(k => k.idEnter);
+             modelBuilder.Entity<accEnter>()
+                .HasOne(bc => bc.user)
+                .WithMany(b => b.Enters)
+                .HasForeignKey(c => c.idUser);
+            modelBuilder.Entity<accEnter>()
+                .HasOne(bc => bc.mode)
+                .WithMany(b => b.Enters)
+                .HasForeignKey(c => c.idMode);
+            modelBuilder.Entity<accEnter>()
+                .HasOne(bc => bc.result)
+                .WithMany(b => b.Enters)
+                .HasForeignKey(c => c.idResult);
 
             modelBuilder.Entity<accUserZone>()
                 .HasKey(bc => new { bc.idUser, bc.idZone });
@@ -57,16 +83,9 @@ namespace CronosegAccess.Data
             modelBuilder.Entity<accTerminal>()
                 .HasOne(bc => bc.Zone)
                 .WithMany(b=>b.Terminals)
-                .HasForeignKey(c=>c.idZone)
-                ;
+                .HasForeignKey(c=>c.idZone);
         }
 
 
-
-
-        public DbSet<CronosegAccess.Models.accUser> accUser { get; set; }
-
-
-        public DbSet<CronosegAccess.Models.accSchedule> accSchedule { get; set; }
     }
 }

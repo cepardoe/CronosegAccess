@@ -43,5 +43,6 @@ namespace CronosegAccess.Models
 
         public ICollection<accUserZone> UserZones { get; set; }
         public ICollection<accUserSchedule> UserSchedules { get; set; }
+        public ICollection<accEnter> Enters { get; set; }
     }
 }

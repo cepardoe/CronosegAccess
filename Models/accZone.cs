@@ -20,5 +20,8 @@ namespace CronosegAccess.Models
         public ICollection<accTerminal> Terminals { get; set; }
 
         public ICollection<accUserZone> UserZones { get; set; }
+
+        public ICollection<accEnter> Enters { get; set; }
+
     }
 }

@@ -19,30 +19,30 @@ namespace CronosegAccess
     {
         public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
-                    Environment = env;
+            Environment = env;
             Configuration = configuration;
         }
-    public IWebHostEnvironment Environment { get; }
+        public IWebHostEnvironment Environment { get; }
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-        if (Environment.IsDevelopment())
-        {
-            services.AddDbContext<CronosegAccessContext>(options =>
-                    options.UseSqlite(Configuration.GetConnectionString("CronosegAccessContextlite")));
-            services.AddDefaultIdentity<IdentityUser>(options =>
-                                                      options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<CronosegAccessContext>();
-                        }
-        else
-        {
-            services.AddDbContext<CronosegAccessContext>(options =>
-            options.UseSqlServer(
-                Configuration.GetConnectionString("CronosegAccessContext")));
-        }
+            if (Environment.IsDevelopment())
+            {
+                services.AddDbContext<CronosegAccessContext>(options =>
+                        options.UseSqlite(Configuration.GetConnectionString("CronosegAccessContextlite")));
+                services.AddDefaultIdentity<IdentityUser>(options =>
+                                                          options.SignIn.RequireConfirmedAccount = true)
+                    .AddEntityFrameworkStores<CronosegAccessContext>();
+            }
+            else
+            {
+                services.AddDbContext<CronosegAccessContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("CronosegAccessContext")));
+            }
             services.Configure<IdentityOptions>(options =>
             {
                 // Default Lockout settings.
@@ -71,20 +71,20 @@ namespace CronosegAccess
             //Cookie settings
             //Configure the app's cookie in Startup.ConfigureServices. ConfigureApplicationCookie must be called after calling AddIdentity or AddDefaultIdentity.
             //For more information, see CookieAuthenticationOptions.
-            //services.ConfigureApplicationCookie(options =>
-            //{
-            //    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
-            //    options.Cookie.Name = "YourAppCookieName";
-            //    options.Cookie.HttpOnly = true;
-            //    options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
-            //    options.LoginPath = "/Identity/Account/Login";
-            //    options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
-            //    options.SlidingExpiration = true;
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+                options.Cookie.Name = "YourAppCookieName";
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                options.LoginPath = "/Identity/Account/Login";
+                options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+                options.SlidingExpiration = true;
 
-            //    //Password Hasher options
-            //    //PasswordHasherOptions gets and sets options for password hashing.
+                //Password Hasher options
+                //PasswordHasherOptions gets and sets options for password hashing.
 
-            //});
+            });
 
             services.Configure<PasswordHasherOptions>(option =>
             {
