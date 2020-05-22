@@ -1,0 +1,107 @@
+@page "{id:int?}"
+@{
+    ViewData["Title"] = "Visitantes";
+}
+<script src="~/js/site.js" defer></script>
+
+<div class="col-lg-6 bg-white shadow-sm p-4">
+  <h4 class="text-primary">Registro de Visitantes</h4>
+  <hr>
+  <div class="d-none d-xl-block position-relative mb-3">
+    <button id="showCamara" class="btn btn-secondary">Activar cámara</button>
+    <button id="capture" class="btn btn-info d-none">Capturar foto</button>
+    <video id="player" class="embed-responsive d-none" autoplay></video>
+    <canvas id="snapshot" class="d-none img-thumbnail position-absolute" width="150" height="90"></canvas>
+  </div>
+
+  <form id="form">
+    <div class="row">
+      <div class="col-sm-6 d-flex align-items-center">
+        <div class="form-group">
+          <label for="foto">Adjuntar foto</label>
+          <input type="file" class="form-control" id="foto" name="foto" accept="image/jpeg,image/png">
+        </div>
+      </div>
+
+      <div class="col-sm-6 d-flex justify-content-center justify-content-sm-start">
+        <div class="form-group">
+          <label for="preview">Vista previa</label>
+          <img id="preview" class="img-thumbnail d-block"
+            src="https://via.placeholder.com/100" alt="perfil">
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="nombre">Nombres</label>
+          <input type="text" class="form-control" id="nombre" name="nombre" required>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="apellido">Apellidos</label>
+          <input type="text" class="form-control" id="apellido" name="apellido" required>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="id">No. de Identificación</label>
+          <input type="text" class="form-control" id="id" name="id" required>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="fechaN">Fecha de nacimiento</label>
+          <input type="date" class="form-control" id="fechaN" name="fechaN" required>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="sexo">Sexo</label>
+          <select class="form-control" id="sexo" name="sexo" required>
+            <option>M</option>
+            <option>F</option>
+          </select>
+        </div>
+      </div>
+
+      @* <div class="col-sm-6">
+        <div class="form-group">
+          <label for="arl">ARL</label>
+          <select class="form-control" id="arl" name="arl" required>
+            
+          </select>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="eps">EPS</label>
+          <select class="form-control" id="eps" name="eps" required>
+           
+          </select>
+        </div>
+      </div>
+ *@
+      <div class="col-12">
+        <div class="form-group">
+          <label for="uploads">Adjuntar archivos (ARL Y EPS)</label>
+          <input type="file" class="form-control" id="uploads" name="archivos"
+            accept="image/jpeg,image/png,application/pdf" multiple>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-success btn-block" type="submit">Guardar Datos</button>
+  </form>
+</div>

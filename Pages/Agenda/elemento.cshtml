@@ -1,0 +1,15 @@
+@page "{id:int?}"
+@{
+    ViewData["Title"] = "Registro de elementos";
+}
+<div class="col-lg-4 bg-white shadow-sm p-4">
+  <h4 class="text-primary">Registro de elementos</h4>
+  <hr>
+  <form id="form">
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" class="form-control" v-model="inputNombre" required>
+    </div>
+    <button class="btn btn-block btn-success">Guardar Datos</button>
+  </form>
+</div>
