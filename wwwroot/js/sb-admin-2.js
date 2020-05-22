@@ -46,6 +46,7 @@
     e.preventDefault();
   });
 
+  $('#dataTable').DataTable();
   $('#dataTableUsers').DataTable();
 
 })(jQuery); // End of use strict

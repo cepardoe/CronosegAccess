@@ -26,7 +26,7 @@ sizeAndPreviewPhoto();
 function sizeDocuments() {
   const $input = document.getElementById("uploads");
   $input.addEventListener('change', () => {
-    if ($input.files[0].size > 100000) {
+    if ($input.files[0].size > 300000) {
       alert("Archivo demasiado grande");
       $input.value = ""
     }

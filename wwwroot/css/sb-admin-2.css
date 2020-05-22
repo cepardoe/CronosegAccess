@@ -230,6 +230,7 @@ th {
 label {
   display: inline-block;
   margin-bottom: 0.5rem;
+  font-size: 15px;
 }
 
 button {
@@ -10233,7 +10234,7 @@ a:focus {
 
 @media (min-width: 768px) {
   .sidebar {
-    width: 14rem !important;
+    width: 13rem !important;
   }
   .sidebar .nav-item .collapse {
     position: relative;
