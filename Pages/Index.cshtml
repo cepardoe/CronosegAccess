@@ -4,7 +4,62 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<link href='../lib/calendar/main.min.css' rel='stylesheet' />
+<script src='../lib/calendar/main.min.js'></script>
+<script src='../lib/calendar/locales-all.min.js'></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var calendarEl = document.getElementById('calendar');
+
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'listDay,listWeek'
+        },
+
+        // customize the button names,
+        // otherwise they'd all just say "list"
+        views: {
+          listDay: {
+            buttonText: 'Listar Día'
+          },
+          listWeek: {
+            buttonText: 'Listar Semana'
+          }
+        },
+        locale: 'es',
+        initialView: 'listWeek',
+        initialDate: '2020-09-01',
+        navLinks: true, // can click day/week names to navigate views
+        editable: false,
+        dayMaxEvents: true, // allow "more" link when too many events
+        events: [{
+            title: 'Un día sin horas',
+            start: '2020-09-01',
+            end: '2020-09-01'
+          },
+          {
+            title: 'Con fecha y hora de inicio y final',
+            start: '2020-09-01T10:30:00',
+            end: '2020-09-01T11:30:00'
+          },
+          {
+            title: 'Sin hora de terminación',
+            start: '2020-09-01T15:30:00',
+            end: '2020-09-01'
+          },
+          {
+            title: 'Varios días sin horas',
+            start: '2020-09-01',
+            end: '2020-09-04'
+          }
+        ]
+      });
+      calendar.render();
+    });
+</script>
+
+<div id='calendar'></div>
